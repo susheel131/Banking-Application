@@ -39,15 +39,15 @@
 <body>
 
     <h2>Account Information</h2>
-
+	
     <div class="card">
-
+		<form action="/accountInfo" method="post">
         <h3>Welcome, <span th:text="${user.name}"></span></h3>
         <p><strong>Account Number:</strong> <span th:text="${account.accountNumber}"></span></p>
         <p><strong>Current Balance:</strong> ₹<span th:text="${account.balance}"></span></p>
 
         <hr><br>
-
+		</form>
         <h3>Recent Transactions</h3>
 
         <table>

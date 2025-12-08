@@ -6,6 +6,8 @@ import com.tcs.banking.Rest_Banking_application.entity.Transaction;
 import com.tcs.banking.Rest_Banking_application.entity.User;
 import com.tcs.banking.Rest_Banking_application.service.TransactionService;
 
+import jakarta.servlet.http.HttpSession;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,24 +98,24 @@ public class TransactionController {
     
     
     @GetMapping("/accountInfo")
-    public String showAccountInfo() {
-    	return "accountInfo";
+    public String showPage() {
+        return "account-entry";
     }
-    
-    
+
     @PostMapping("/accountInfo")
-    public String accountInfo(@RequestParam String accountNumber, Model model) {
+    public String loadAccount(@RequestParam String accountNumber, Model model) {
 
         Account account = transactionService.getAccount(accountNumber);
         User user = account.getUser();
         List<Transaction> transactions = transactionService.getTransactions(accountNumber);
-        
+
         model.addAttribute("user", user);
         model.addAttribute("account", account);
         model.addAttribute("transactions", transactions);
 
-        return "dashboard";
+        return "accountInfo";
     }
+
     
     
     
