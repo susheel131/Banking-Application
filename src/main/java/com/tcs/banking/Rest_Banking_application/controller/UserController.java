@@ -5,10 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tcs.banking.Rest_Banking_application.entity.User;
 import com.tcs.banking.Rest_Banking_application.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
@@ -31,21 +34,46 @@ public class UserController {
     
     @GetMapping("/login")
     public String showLoginForm() {
-        return "login"; // Displays login.html after registration
+        return "login";
     }
-    
+
     @PostMapping("/login")
-    public String login(String email, String password, Model model) {
+    public String login(@RequestParam String email,
+                        @RequestParam String password,
+                        Model model,
+                        HttpSession session) {
+
+        
+        Integer attempts = (Integer) session.getAttribute("loginAttempts");
+        if (attempts == null) attempts = 0;
+
+        
+        if (attempts ==3) {
+        	session.setAttribute("loginAttempts", 0);
+            model.addAttribute("error", "🚫 You entered incorrect password 3 times. Account Locked!");
+            return "home";
+        }
+
+        
         User user = userService.findByEmail(email);
 
-        if (user != null && user.getPassword().equals(password)) {
+        if (user.getPassword().equals(password)) {
+
+           
+            session.setAttribute("loginAttempts", 0);
+
             model.addAttribute("name", user.getName());
-            return "welcome";  // after successful login -> open welcome page
-        } else {
-            model.addAttribute("error", "Invalid Credentials!");
-            return "login";
+            return "welcome";  
         }
+
+        
+        attempts++;
+        session.setAttribute("loginAttempts", attempts);
+
+        model.addAttribute("error", "❌ Invalid Credentials! Attempts Left: " + (3 - attempts));
+        return "login";
     }
+
     
     
     
