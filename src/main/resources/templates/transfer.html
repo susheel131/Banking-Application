@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Transfer Money</title>
+</head>
+<body>
+    <h1>Transfer Money</h1>
+	
+	<p th:if="${successMessage}" th:text="${successMessage}" style="color:green;font-weight:bold;"></p>
+	<p th:if="${errorMessage}" th:text="${errorMessage}" style="color:red;font-weight:bold;"></p>
+
+    <p>Welcome, <span th:text="${name}"></span>!</p>
+    <a th:href="@{/dashboard}">Back to Dashboard</a> 
+    
+    <form th:action="@{/transfer}" method="post">
+        <label for="senderAccountNumber">Sender Account Number:</label>
+        <input type="text" id="senderAccountNumber" name="senderAccountNumber" placeholder="Enter Sender Account Number" required /><br><br>
+		
+		
+		<label for="Password">Password:</label>
+		<input type="text" id="password" name="password" placeholder="Enter Sender password" required /><br><br>
+		       
+        
+        <label for="receiverAccountNumber">Receiver Account Number:</label>
+        <input type="text" id="receiverAccountNumber" name="receiverAccountNumber" placeholder="Enter Receiver Account Number" required /><br><br>
+        
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" step="0.01" placeholder="Enter Amount" required /><br><br>
+        
+        <button type="submit">Transfer</button>
+    </form>
+</body>
+</html>

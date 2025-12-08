@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Account Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f9f9f9; }
+        h2 { text-align: center; }
+
+        .card {
+            width: 50%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+        }
+        th, td { padding: 10px; border-bottom: 1px solid #ddd; }
+        th { background-color: #e8e8e8; text-align: left; }
+
+        .btn {
+            display: inline-block; 
+            background: #28a745;  
+            padding: 10px 16px; 
+            color: white; 
+            text-decoration: none;
+            font-size: 14px; 
+            border-radius: 4px;
+        }
+        .btn:hover { background: #218838; }
+    </style>
+</head>
+
+<body>
+
+    <h2>Account Information</h2>
+
+    <div class="card">
+
+        <h3>Welcome, <span th:text="${user.name}"></span></h3>
+        <p><strong>Account Number:</strong> <span th:text="${account.accountNumber}"></span></p>
+        <p><strong>Current Balance:</strong> ₹<span th:text="${account.balance}"></span></p>
+
+        <hr><br>
+
+        <h3>Recent Transactions</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Type</th>
+                    <th>Amount (₹)</th>
+                    <th>Date & Time</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="t : ${transactions}">
+                    <td th:text="${t.id}"></td>
+                    <td th:text="${t.type}"></td>
+                    <td th:text="${t.amount}"></td>
+                    <td th:text="${t.timestamp}"></td>
+                </tr>
+
+                <tr th:if="${transactions.size() == 0}">
+                    <td colspan="4" style="text-align:center;color:gray;">No Transactions Found</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <a class="btn" th:href="@{/dashboard}">Back to Dashboard</a>
+
+    </div>
+
+</body>
+</html>

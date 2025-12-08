@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Welcome</title></head>
+	<body>
+	    <h1>Welcome to Banking Application</h1>
+	    <h3 th:text="'Hello, ' + ${name} + '!'"></h3>
+		<a th:href="@{/dashboard}">
+		        <button type="button">Start Banking</button>
+		</a>
+	</body>
+
+</html>

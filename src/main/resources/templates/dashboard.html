@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Banking Dashboard</title>
+    <style>
+        /* Basic styling for readability and buttons */
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .transaction-buttons { margin-top: 20px; }
+        .transaction-buttons button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .transaction-buttons button:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Your Banking Dashboard</h1>
+	<p th:if="${successMessage}" th:text="${successMessage}" style="color:green; font-weight:bold;"></p>
+	<h3 th:text="'Thank you  ' + ${message} + '!'"></h3>
+   
+    
+    <div class="transaction-buttons">
+        <h2>Transaction Options</h2>
+        <a th:href="@{/deposit}"><button>Deposit Money</button></a>
+        <a th:href="@{/withdraw}"><button>Withdraw Money</button></a>
+        <a th:href="@{/transfer}"><button>Transfer Money</button></a>
+		<a th:href="@{/chackBalence}"><button>Check Balence</button></a>
+		<a th:href="@{/accountInfo}"><button>Check Account Details</button></a>
+		<a th:href="@{/logout}">Logout</a>
+    </div>
+</body>
+</html>

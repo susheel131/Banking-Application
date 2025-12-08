@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Banking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f5f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 80px;
+            font-size: 32px;
+        }
+
+        .container {
+            margin-top: 60px;
+        }
+
+        .btn {
+            background: #0077cc;
+            color: white;
+            padding: 12px 30px;
+            margin: 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #005fa3;
+        }
+
+        footer {
+            margin-top: 60px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Online Banking System</h1>
+    <p>Your secure way to manage your money</p>
+
+    <div class="container">
+
+        <!-- Buttons linked to your existing pages -->
+        <a th:href="@{/login}" class="btn">Login</a>
+        <a th:href="@{/register}" class="btn">Register</a>
+
+    </div>
+
+    <footer>© 2025 Online Banking System | All Rights Reserved</footer>
+
+</body>
+</html>
