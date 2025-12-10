@@ -24,11 +24,11 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionService;
 
-   @GetMapping("/home")
-   public String homePageView() {
-	   return "home";
-   }
-    
+
+    @GetMapping("/accountInfo")
+    public String showPage() {
+        return "account-entry";
+    }
     
     @GetMapping("/dashboard")
     public String bankingdashboard( Model model) {
@@ -97,10 +97,7 @@ public class TransactionController {
     
     
     
-    @GetMapping("/accountInfo")
-    public String showPage() {
-        return "account-entry";
-    }
+  
 
     @PostMapping("/accountInfo")
     public String loadAccount(@RequestParam String accountNumber, Model model) {

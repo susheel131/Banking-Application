@@ -18,6 +18,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/home")
+    public String homePageView() {
+ 	   return "home";
+    }
+    
+    
     @GetMapping("/register")
     public String showRegisterForm(Model model) {
         model.addAttribute("user", new User());
